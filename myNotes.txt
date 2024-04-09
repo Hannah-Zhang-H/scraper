@@ -1,0 +1,50 @@
+1. create the virtual environment
+python -m venv myenv
+source myenv/bin/activate
+pip install django
+
+  we are going to use requests and beautiful soup
+django-admin startproject mysite
+cd mysite
+django-admin startapp myapp
+
+2. go to settings.py:
+注册app，用原始方法写，否则报错
+
+3.# requests package可以让python文件访问其他网页
+pip install requests
+
+# beautfulsoup 可以为我们提取网页内容or HTML
+pip install beautifulsoup4
+
+4. # mysite/myapp/views.py中写代码
+# 写完后去urls.py中配置好
+记得创建文件夹存放html文件
+myapp/templates/myapp/result.html
+
+
+5. 不要hardcode网页，我要让用户自己输入网址，然后我们把网址存进model然后进行处理
+myapp/models.py:
+创建model存储url和name
+
+6. 做migrates 2个
+
+7. 修改myapp/views.py，把数据存入新建的model object，然后从数据库获取所有objects传给前端
+8. 修改result.html
+
+9. 创建superuser:
+python manage.py createsuperuser
+
+10. 注册model到admin.py
+
+
+11. 添加了前端的输入form让用户输入url，和两个按钮（一个是抓取，一个是删除）后，
+去views.py
+from django.http import HttpResponseRedirect
+
+
+12.
+有时候它们的效果是相同的，但它们的使用场景略有不同。
+return HttpResponseRedirect('/') 适用于需要将用户重定向到另一个 URL 的情况，比如表单提交成功后跳转到一个感谢页面，或者需要用户登录后跳转到登录后的页面等。
+return render(request, 'template.html', context) 则适用于需要渲染包含动态内容的 HTML 页面的情况，比如显示用户个人资料页面、博客文章详情页面等。
+虽然在某些情况下它们可以互相替代，但根据其设计目的和语义，最好还是选择最符合场景的方式。
